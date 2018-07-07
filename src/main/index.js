@@ -11,7 +11,8 @@ let mainWindow;
 function createWindow () {
   // Create the browser window.
   mainWindow = new BrowserWindow({ width: 800, height: 600 });
-  mainWindow.loadFile(path.join(binroot, "renderer", "index.html"));
+  mainWindow.loadFile(path.join(binroot, "browser", "index.html"));
+  mainWindow.webContents.openDevTools();
 
   mainWindow.on("closed", function() {
     mainWindow = null;

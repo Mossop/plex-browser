@@ -18,5 +18,12 @@
     "gulp": "^3.9.1",
     "gulp-babel": "^7.0.1",
     "gulp-sourcemaps": "^2.6.4"
+  },
+  "dependencies": {
+    "immutable": "^3.8.2",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.0"
   }
 }
