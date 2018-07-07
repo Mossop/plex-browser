@@ -1,0 +1,11 @@
+{
+  "presets": [
+    ["env", {
+      "targets": {
+        "node": "8.9.3",
+        "chrome": 61
+      }
+    }]
+  ],
+  "plugins": ["syntax-jsx", "transform-react-jsx"]
+}

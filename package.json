@@ -1,0 +1,22 @@
+{
+  "name": "plex-browser",
+  "version": "1.0.0",
+  "description": "A simple UI for browsing the Plex API.",
+  "main": "bin/main/index.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Dave Townsend <dtownsend@oxymoronical.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-plugin-syntax-jsx": "^6.18.0",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-preset-env": "^1.7.0",
+    "electron": "^2.0.4",
+    "eslint": "^5.0.1",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^7.0.1",
+    "gulp-sourcemaps": "^2.6.4"
+  }
+}
