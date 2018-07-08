@@ -15,15 +15,19 @@
     "babel-preset-env": "^1.7.0",
     "electron": "^2.0.4",
     "eslint": "^5.0.1",
+    "eslint-plugin-react": "^7.10.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^7.0.1",
     "gulp-sourcemaps": "^2.6.4"
   },
   "dependencies": {
     "immutable": "^3.8.2",
+    "plex-client": "file:../node-plex-client",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-redux": "^5.0.7",
-    "redux": "^4.0.0"
+    "redux": "^4.0.0",
+    "redux-logger": "^3.0.6",
+    "redux-promise": "^0.6.0"
   }
 }

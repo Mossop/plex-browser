@@ -1,7 +1,37 @@
-html, body, #app {
+html, body, #app, .main {
   width: 100%;
   height: 100%;
   border: 0px;
   padding: 0px;
   margin: 0px;
+  font-family: sans-serif;
+}
+
+#app {
+  position: relative;
+}
+
+.dialogFrame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.dialog {
+  background: lightgray;
+  border: 1px solid darkgray;
+  padding: 10px;
+  display: grid;
+  grid-gap: 10px;
+}
+
+.warning {
+  color: red;
 }
