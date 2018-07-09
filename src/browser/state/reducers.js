@@ -1,11 +1,19 @@
 import { Map, List } from "immutable";
 
-import { SETTINGS_SET, UI_SET_VALUE, CLIENT_SET, ACCOUNT_SET, DEVICES_SET } from "./actions";
+import {
+  SETTINGS_SET,
+  UI_SET_VALUE,
+  CLIENT_SET,
+  ACCOUNT_SET,
+  DEVICES_SET,
+  DEVICE_SET
+} from "./actions";
 
 const initialState = Map({
   client: undefined,
   account: undefined,
   devices: List([]),
+  selectedDevice: undefined,
   breadcrumbs: List([]),
   ui: Map({
     clientType: "default",
@@ -30,6 +38,8 @@ const reducer = (state = initialState, action) => {
     return state.set("account", action.account);
   case DEVICES_SET:
     return state.set("devices", List(action.devices));
+  case DEVICE_SET:
+    return state.set("selectedDevice", action.device);
   default:
     return state;
   }

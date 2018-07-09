@@ -5,6 +5,7 @@ export const UI_SET_VALUE = "UI_SET_VALUE";
 export const CLIENT_SET = "CLIENT_SET";
 export const ACCOUNT_SET = "ACCOUNT_SET";
 export const DEVICES_SET = "DEVICES_SET";
+export const DEVICE_SET = "DEVICE_SET";
 
 export function setSettings(settings) {
   return {
@@ -51,5 +52,12 @@ export async function setDevices(devices) {
   return {
     type: DEVICES_SET,
     devices,
+  };
+}
+
+export async function setDevice(device) {
+  return {
+    type: DEVICE_SET,
+    device,
   };
 }
