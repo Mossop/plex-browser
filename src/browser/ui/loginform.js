@@ -1,8 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { PlexAccount } from "plex-client";
 
-import { login, setUIValue } from "../state/actions";
+import { setUIValue, setAccount, setDevices } from "../state/actions";
 
 const LoginForm = ({ client, username, password, loginFailed, onChangeUsername, onChangePassword, onLoginClick }) => {
   let warning = <span></span>;
@@ -10,20 +11,22 @@ const LoginForm = ({ client, username, password, loginFailed, onChangeUsername, 
     warning = <span className="warning">Login failed!</span>;
   }
 
-  return <div className="dialog" style={{
-    gridTemplateColumns: "auto auto",
-  }}>
-    <label htmlFor="username">Username:</label>
-    <input type="text" id="username" value={username} onChange={(e) => onChangeUsername(e.target.value)}/>
-    <label htmlFor="password">Password:</label>
-    <input type="password" id="password" value={password} onChange={(e) => onChangePassword(e.target.value)}/>
-    {warning}
-    <div style={{
-      textAlign: "end",
+  return (
+    <div className="dialog" style={{
+      gridTemplateColumns: "auto auto",
     }}>
-      <button type="button" onClick={() => onLoginClick(client, username, password)}>Login</button>
+      <label htmlFor="username">Username:</label>
+      <input type="text" id="username" value={username} onChange={(e) => onChangeUsername(e.target.value)}/>
+      <label htmlFor="password">Password:</label>
+      <input type="password" id="password" value={password} onChange={(e) => onChangePassword(e.target.value)}/>
+      {warning}
+      <div style={{
+        textAlign: "end",
+      }}>
+        <button type="button" onClick={() => onLoginClick(client, username, password)}>Login</button>
+      </div>
     </div>
-  </div>;
+  );
 };
 
 LoginForm.propTypes = {
@@ -56,7 +59,15 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(setUIValue("password", text));
     },
     onLoginClick: (client, username, password) => {
-      dispatch(login(client, username, password));
+      PlexAccount.login(client, username, password).then((account) => {
+        dispatch(setAccount(account));
+        account.getResources().then((devices) => {
+          dispatch(setDevices(devices));
+        });
+      }, (error) => {
+        console.error(error);
+        dispatch(setUIValue("loginFailed", true));
+      });
     },
   };
 };

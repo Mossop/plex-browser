@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import ResourceList from "./resourcelist";
+import DeviceList from "./devicelist";
 import ClientPicker from "./clientpicker";
 import LoginForm from "./loginform";
 
@@ -14,7 +14,7 @@ const App = ({ client, account }) => {
       alignItems: "stretch",
       justifyContent: "start"
     }}>
-      <ResourceList/>
+      <DeviceList/>
       <div style={{
         flex: "1",
         display: "flex",
@@ -24,13 +24,17 @@ const App = ({ client, account }) => {
     </div>
   ];
   if (!client) {
-    results.push(<div key="dialog" className="dialogFrame">
-      <ClientPicker/>
-    </div>);
+    results.push((
+      <div key="dialog" className="dialogFrame">
+        <ClientPicker/>
+      </div>
+    ));
   } else if (!account) {
-    results.push(<div key="dialog" className="dialogFrame">
-      <LoginForm/>
-    </div>);
+    results.push((
+      <div key="dialog" className="dialogFrame">
+        <LoginForm/>
+      </div>
+    ));
   }
   return results;
 };
