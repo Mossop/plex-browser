@@ -7,7 +7,7 @@ const Device = ({ device }) => {
       textAlign: "center",
       padding: "10px",
     }}>
-      <div className="deviceImage"><img src="server.jpg" /></div>
+      <div className="deviceImage"><img src="server.png" /></div>
       <p>{device.name}</p>
     </div>
   );
