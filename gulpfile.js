@@ -15,4 +15,4 @@ gulp.task("javascript", function() {
     .pipe(gulp.dest("bin"));
 });
 
-gulp.task("default", ["javascript", "resources"]);
+gulp.task("default", gulp.parallel("javascript", "resources"));
