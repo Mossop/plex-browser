@@ -1,6 +1,6 @@
 import { Map, List } from "immutable";
 
-import { UI_SET_VALUE, CLIENT_SET, ACCOUNT_SET, DEVICES_SET } from "./actions";
+import { SETTINGS_SET, UI_SET_VALUE, CLIENT_SET, ACCOUNT_SET, DEVICES_SET } from "./actions";
 
 const initialState = Map({
   client: undefined,
@@ -17,6 +17,11 @@ const initialState = Map({
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+  case SETTINGS_SET:
+    let { username = "", password = "", clientType = "default" } = action.settings;
+    return state.setIn(["ui", "username"], username)
+      .setIn(["ui", "password"], password)
+      .setIn(["ui", "clientType"], clientType);
   case UI_SET_VALUE:
     return state.setIn(["ui", action.id], action.value);
   case CLIENT_SET:
