@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import DeviceList from "./devicelist";
 import ClientPicker from "./clientpicker";
 import LoginForm from "./loginform";
+import Main from "./main";
 
 const App = ({ client, account }) => {
   let results = [
@@ -15,12 +16,7 @@ const App = ({ client, account }) => {
       justifyContent: "start"
     }}>
       <DeviceList/>
-      <div style={{
-        flex: "1",
-        display: "flex",
-        flexDirection: "column"
-      }}>
-      </div>
+      <Main/>
     </div>
   ];
   if (!client) {
