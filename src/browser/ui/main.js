@@ -7,13 +7,14 @@ import PlexDevice from "plex-client/api/device";
 
 import Breadcrumbs from "./breadcrumbs";
 import { DisplayContainer, DisplayDevice } from "./display";
+import { selectItem } from "../state/actions";
 
-const Main = ({ breadcrumbs, current }) => {
+const Main = ({ breadcrumbs, current, onSelectItem }) => {
   let mainElement = <div style={{ flex: "1" }}></div>;
   if (current instanceof PlexDevice) {
-    mainElement = <DisplayDevice item={current}/>;
+    mainElement = <DisplayDevice item={current} onSelectItem={onSelectItem}/>;
   } else if (current instanceof PlexContainer) {
-    mainElement = <DisplayContainer item={current}/>;
+    mainElement = <DisplayContainer item={current} onSelectItem={onSelectItem}/>;
   }
 
   return (
@@ -38,6 +39,7 @@ const Main = ({ breadcrumbs, current }) => {
 Main.propTypes = {
   breadcrumbs: PropTypes.array.isRequired,
   current: PropTypes.object,
+  onSelectItem: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
@@ -47,4 +49,12 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Main);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onSelectItem: (item) => {
+      dispatch(selectItem(item));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Main);

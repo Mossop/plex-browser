@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 export class DisplayContainer extends React.Component {
@@ -27,7 +28,7 @@ export class DisplayContainer extends React.Component {
             textAlign: "center",
             padding: "10px",
             cursor: "pointer",
-          }} key={i.path}>
+          }} key={i.path} onClick={() => this.props.onSelectItem(i)}>
             <p>{i.name}</p>
           </li>
         ))}
@@ -53,6 +54,11 @@ export class DisplayContainer extends React.Component {
   }
 }
 
+DisplayContainer.propTypes = {
+  item: PropTypes.object.isRequired,
+  onSelectItem: PropTypes.func.isRequired,
+};
+
 export class DisplayDevice extends DisplayContainer {
   render() {
     let { item } = this.props;
@@ -64,15 +70,9 @@ export class DisplayDevice extends DisplayContainer {
           <li><b>Name:</b> {item.name}</li>
           <li><b>Path:</b> {item.path}</li>
           <li><b>ID:</b> {item.id}</li>
-          <li><b>Art:</b> {item.art}</li>
-          <li><b>Thumb:</b> {item.thumb}</li>
         </ul>
         {this.renderItems()}
       </div>
     );
   }
 }
-
-DisplayContainer.propTypes = {
-  item: PropTypes.object.isRequired,
-};

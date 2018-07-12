@@ -9,7 +9,7 @@ const Breadcrumbs = ({ crumbs }) => {
     }}>
       {crumbs.map(c => (
         <li style={{
-          display: "span",
+          display: "inline",
           listStyleType: "none",
           padding: "0 0 0 10px"
         }} key={c.path}>

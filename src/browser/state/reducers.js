@@ -6,7 +6,8 @@ import {
   CLIENT_SET,
   ACCOUNT_SET,
   DEVICES_SET,
-  DEVICE_SET
+  DEVICE_SET,
+  ITEM_SELECT,
 } from "./actions";
 
 const initialState = Map({
@@ -40,6 +41,8 @@ const reducer = (state = initialState, action) => {
     return state.set("devices", List(action.devices));
   case DEVICE_SET:
     return state.set("breadcrumbs", List([action.device]));
+  case ITEM_SELECT:
+    return state.set("breadcrumbs", state.get("breadcrumbs").push(action.item));
   default:
     return state;
   }
