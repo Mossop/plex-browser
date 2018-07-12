@@ -22,14 +22,14 @@ const DeviceList = ({ devices, selectedDevice, onSelectDevice }) => {
 
 DeviceList.propTypes = {
   devices: PropTypes.array.isRequired,
-  selectedDevice: PropTypes.object.isRequired,
+  selectedDevice: PropTypes.object,
   onSelectDevice: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
   return {
     devices: state.get("devices").toArray(),
-    selectedDevice: state.get("selectedDevice"),
+    selectedDevice: state.get("breadcrumbs").first(),
   };
 };
 

@@ -13,7 +13,6 @@ const initialState = Map({
   client: undefined,
   account: undefined,
   devices: List([]),
-  selectedDevice: undefined,
   breadcrumbs: List([]),
   ui: Map({
     clientType: "default",
@@ -25,11 +24,12 @@ const initialState = Map({
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-  case SETTINGS_SET:
+  case SETTINGS_SET: {
     let { username = "", password = "", clientType = "default" } = action.settings;
     return state.setIn(["ui", "username"], username)
       .setIn(["ui", "password"], password)
       .setIn(["ui", "clientType"], clientType);
+  }
   case UI_SET_VALUE:
     return state.setIn(["ui", action.id], action.value);
   case CLIENT_SET:
@@ -39,7 +39,7 @@ const reducer = (state = initialState, action) => {
   case DEVICES_SET:
     return state.set("devices", List(action.devices));
   case DEVICE_SET:
-    return state.set("selectedDevice", action.device);
+    return state.set("breadcrumbs", List([action.device]));
   default:
     return state;
   }
