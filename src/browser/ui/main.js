@@ -2,15 +2,18 @@ import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
+import PlexContainer from "plex-client/api/container";
 import PlexDevice from "plex-client/api/device";
 
 import Breadcrumbs from "./breadcrumbs";
-import { DisplayDevice } from "./display";
+import { DisplayContainer, DisplayDevice } from "./display";
 
 const Main = ({ breadcrumbs, current }) => {
   let mainElement = <div style={{ flex: "1" }}></div>;
   if (current instanceof PlexDevice) {
-    mainElement = <DisplayDevice device={current}/>;
+    mainElement = <DisplayDevice item={current}/>;
+  } else if (current instanceof PlexContainer) {
+    mainElement = <DisplayContainer item={current}/>;
   }
 
   return (
