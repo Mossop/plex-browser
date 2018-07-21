@@ -40,6 +40,7 @@ Main.propTypes = {
   breadcrumbs: PropTypes.array.isRequired,
   current: PropTypes.object,
   onSelectItem: PropTypes.func.isRequired,
+  onSelectCrumb: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
