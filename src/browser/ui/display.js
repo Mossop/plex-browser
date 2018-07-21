@@ -26,8 +26,12 @@ export class DisplayContainer extends React.Component {
             display: "inline-block",
             listStyleImage: "none",
             textAlign: "center",
-            padding: "10px",
+            padding: "5px",
+            margin: "10px",
             cursor: "pointer",
+            width: "100px",
+            height: "100px",
+            border: "1px solid black",
           }} key={i.path} onClick={() => this.props.onSelectItem(i)}>
             <p>{i.name}</p>
           </li>
