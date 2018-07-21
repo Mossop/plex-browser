@@ -7,6 +7,7 @@ export const ACCOUNT_SET = "ACCOUNT_SET";
 export const DEVICES_SET = "DEVICES_SET";
 export const DEVICE_SET = "DEVICE_SET";
 export const ITEM_SELECT = "ITEM_SELECT";
+export const CRUMB_SELECT = "CRUMB_SELECT";
 
 export function setSettings(settings) {
   return {
@@ -67,5 +68,12 @@ export async function selectItem(item) {
   return {
     type: ITEM_SELECT,
     item,
+  };
+}
+
+export async function selectCrumb(index) {
+  return {
+    type: CRUMB_SELECT,
+    index,
   };
 }

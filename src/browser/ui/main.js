@@ -7,9 +7,9 @@ import PlexDevice from "plex-client/api/device";
 
 import Breadcrumbs from "./breadcrumbs";
 import { DisplayContainer, DisplayDevice } from "./display";
-import { selectItem } from "../state/actions";
+import { selectItem, selectCrumb } from "../state/actions";
 
-const Main = ({ breadcrumbs, current, onSelectItem }) => {
+const Main = ({ breadcrumbs, current, onSelectItem, onSelectCrumb }) => {
   let mainElement = <div style={{ flex: "1" }}></div>;
   if (current instanceof PlexDevice) {
     mainElement = <DisplayDevice item={current} onSelectItem={onSelectItem}/>;
@@ -29,7 +29,7 @@ const Main = ({ breadcrumbs, current, onSelectItem }) => {
         justifyContent: "space-between",
         borderBottom: "1px solid grey",
       }}>
-        <Breadcrumbs crumbs={breadcrumbs}/>
+        <Breadcrumbs crumbs={breadcrumbs} onSelectCrumb={onSelectCrumb}/>
       </div>
       {mainElement}
     </div>
@@ -54,6 +54,9 @@ const mapDispatchToProps = (dispatch) => {
     onSelectItem: (item) => {
       dispatch(selectItem(item));
     },
+    onSelectCrumb: (index) => {
+      dispatch(selectCrumb(index));
+    }
   };
 };
 

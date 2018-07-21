@@ -8,6 +8,7 @@ import {
   DEVICES_SET,
   DEVICE_SET,
   ITEM_SELECT,
+  CRUMB_SELECT,
 } from "./actions";
 
 const initialState = Map({
@@ -43,6 +44,8 @@ const reducer = (state = initialState, action) => {
     return state.set("breadcrumbs", List([action.device]));
   case ITEM_SELECT:
     return state.set("breadcrumbs", state.get("breadcrumbs").push(action.item));
+  case CRUMB_SELECT:
+    return state.set("breadcrumbs", state.get("breadcrumbs").setSize(action.index + 1));
   default:
     return state;
   }
