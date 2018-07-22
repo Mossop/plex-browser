@@ -19,10 +19,14 @@ export class DisplayContainer extends React.Component {
       <ol style={{
         padding: "0",
         margin: "0",
+        display: "flex",
+        flexWrap: "wrap",
+        flexDirection: "row",
+        justifyContent: "start",
       }}>
         {this.state.items.map(i => (
           <li style={{
-            display: "inline-block",
+            display: "block",
             listStyleImage: "none",
             textAlign: "center",
             padding: "5px",
