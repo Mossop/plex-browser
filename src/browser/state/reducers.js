@@ -21,6 +21,7 @@ const initialState = Map({
     username: "",
     password: "",
     loginFailed: false,
+    viewRaw: false,
   })
 });
 

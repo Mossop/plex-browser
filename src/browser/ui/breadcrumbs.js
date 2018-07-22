@@ -11,7 +11,7 @@ const Breadcrumbs = ({ crumbs, onSelectCrumb }) => {
         <li style={{
           display: "inline",
           listStyleType: "none",
-          padding: "0 5px 0 5px",
+          padding: "0 10px 0 0",
           cursor: "pointer",
         }} key={c.path} onClick={() => onSelectCrumb(index)}>
           {c.name}

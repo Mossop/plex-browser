@@ -12,7 +12,7 @@ const DeviceList = ({ devices, selectedDevice, onSelectDevice }) => {
       flexDirection: "column",
       justifyContent: "start",
       alignItems: "center",
-      width: "200px",
+      width: "150px",
       borderRight: "1px solid grey",
     }}>
       {devices.map((device) => <Device key={device.id} device={device} selected={device === selectedDevice} onClick={() => onSelectDevice(device)}/>)}

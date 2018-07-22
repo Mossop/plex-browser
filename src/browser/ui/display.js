@@ -1,5 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 export class DisplayContainer extends React.Component {
@@ -43,9 +42,7 @@ export class DisplayContainer extends React.Component {
   render() {
     let { item } = this.props;
     return (
-      <div style={{
-        flex: "1",
-      }}>
+      <div>
         <ul>
           <li><b>Name:</b> {item.name}</li>
           <li><b>Path:</b> {item.path}</li>
@@ -67,9 +64,7 @@ export class DisplayDevice extends DisplayContainer {
   render() {
     let { item } = this.props;
     return (
-      <div style={{
-        flex: "1",
-      }}>
+      <div>
         <ul>
           <li><b>Name:</b> {item.name}</li>
           <li><b>Path:</b> {item.path}</li>
