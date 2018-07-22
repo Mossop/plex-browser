@@ -10,6 +10,33 @@ import JSONDisplay from "./json";
 import { DisplayContainer, DisplayDevice } from "./display";
 import { setUIValue, selectItem, selectCrumb } from "../state/actions";
 
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { error: undefined };
+  }
+
+  componentDidCatch(error) {
+    this.setState({ error: error });
+  }
+
+  render() {
+    if (this.state.error) {
+      return (
+        <div style={{ overflow: "auto" }}>
+          <pre>{String(this.state.error)}</pre>
+        </div>
+      );
+    }
+
+    return this.props.children;
+  }
+}
+
+ErrorBoundary.propTypes = {
+  children: PropTypes.element.isRequired,
+};
+
 const Main = ({ breadcrumbs, current, viewRaw, onSelectItem, onSelectCrumb, onViewRaw, onViewItem }) => {
   if (!current) {
     return <div style={{ flex: "1" }}></div>;
@@ -45,7 +72,9 @@ const Main = ({ breadcrumbs, current, viewRaw, onSelectItem, onSelectCrumb, onVi
         <Breadcrumbs crumbs={breadcrumbs} onSelectCrumb={onSelectCrumb}/>
         {toggleElement}
       </div>
-      {mainElement}
+      <ErrorBoundary>
+        {mainElement}
+      </ErrorBoundary>
     </div>
   );
 };
