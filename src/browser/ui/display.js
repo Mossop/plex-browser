@@ -46,8 +46,8 @@ export class DisplayContainer extends React.Component {
         <ul>
           <li><b>Name:</b> {item.name}</li>
           <li><b>Path:</b> {item.path}</li>
-          <li><b>Art:</b> {item.art}</li>
-          <li><b>Thumb:</b> {item.thumb}</li>
+          <li><b>Art:</b> {String(item.art)}</li>
+          <li><b>Thumb:</b> {String(item.thumb)}</li>
         </ul>
         {this.renderItems()}
       </div>
