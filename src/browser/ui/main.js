@@ -44,7 +44,10 @@ const Main = ({ breadcrumbs, current, viewRaw, onSelectItem, onSelectCrumb, onVi
 
   let mainElement = <div style={{ flex: "1" }}>Unknown item type.</div>;
   if (viewRaw) {
-    mainElement = <JSONDisplay key={current.path} data={current._data}/>;
+    mainElement = <div style={{ overflow: "auto" }}>
+      <JSONDisplay key={current.path} data={current._data}/>
+      <JSONDisplay key={current.path} data={current._sourceData}/>
+    </div>;
   } else if (current instanceof PlexDevice) {
     mainElement = <DisplayDevice key={current.path} item={current} onSelectItem={onSelectItem}/>;
   } else if (current instanceof PlexContainer) {
