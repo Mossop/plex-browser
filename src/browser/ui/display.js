@@ -13,13 +13,34 @@ export class DisplayItem extends React.Component {
     ];
   }
 
+  renderItems() {
+    return <div></div>;
+  }
+
   render() {
+    let { item } = this.props;
     let fields = this.getDisplayFields();
+    let styles = {};
+
+    if (item.art) {
+      styles.backgroundImage = `url(${item.device.transcodeImage(item.art, {
+        background: "ffffff",
+        opacity: 30,
+        format: "png",
+        width: 1024,
+        height: 1020,
+      })})`;
+      styles.backgroundPosition = "top center";
+      styles.backgroundRepeat = "no-repeat";
+      styles.backgroundSize = "contain";
+    }
+
     return (
-      <div>
+      <div style={styles}>
         <ul>
           {fields}
         </ul>
+        {this.renderItems()}
       </div>
     );
   }
@@ -85,19 +106,6 @@ export class DisplayContainer extends DisplayItem {
           );
         })}
       </ol>
-    );
-  }
-
-  render() {
-    let { item } = this.props;
-    let fields = this.getDisplayFields();
-    return (
-      <div>
-        <ul>
-          {fields}
-        </ul>
-        {this.renderItems()}
-      </div>
     );
   }
 }
