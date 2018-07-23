@@ -8,6 +8,8 @@ export class DisplayItem extends React.Component {
     return [
       <li key="name"><b>Name:</b> {item.name}</li>,
       <li key="path"><b>Path:</b> {item.path}</li>,
+      <li key="art"><b>Art:</b> {String(item.art)}</li>,
+      <li key="thumb"><b>Thumb:</b> {String(item.thumb)}</li>,
     ];
   }
 
@@ -84,18 +86,6 @@ export class DisplayContainer extends DisplayItem {
         })}
       </ol>
     );
-  }
-
-  getDisplayFields() {
-    let { item } = this.props;
-    let fields = super.getDisplayFields();
-
-    fields.push(
-      <li key="art"><b>Art:</b> {String(item.art)}</li>,
-      <li key="thumb"><b>Thumb:</b> {String(item.thumb)}</li>,
-    );
-
-    return fields;
   }
 
   render() {
