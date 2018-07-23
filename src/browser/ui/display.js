@@ -1,7 +1,33 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-export class DisplayContainer extends React.Component {
+export class DisplayItem extends React.Component {
+  getDisplayFields() {
+    let { item } = this.props;
+
+    return [
+      <li key="name"><b>Name:</b> {item.name}</li>,
+      <li key="path"><b>Path:</b> {item.path}</li>,
+    ];
+  }
+
+  render() {
+    let fields = this.getDisplayFields();
+    return (
+      <div>
+        <ul>
+          {fields}
+        </ul>
+      </div>
+    );
+  }
+}
+
+DisplayItem.propTypes = {
+  item: PropTypes.object.isRequired,
+};
+
+export class DisplayContainer extends DisplayItem {
   constructor(props) {
     super(props);
     this.state = { items: [] };
@@ -60,15 +86,25 @@ export class DisplayContainer extends React.Component {
     );
   }
 
+  getDisplayFields() {
+    let { item } = this.props;
+    let fields = super.getDisplayFields();
+
+    fields.push(
+      <li key="art"><b>Art:</b> {String(item.art)}</li>,
+      <li key="thumb"><b>Thumb:</b> {String(item.thumb)}</li>,
+    );
+
+    return fields;
+  }
+
   render() {
     let { item } = this.props;
+    let fields = this.getDisplayFields();
     return (
       <div>
         <ul>
-          <li><b>Name:</b> {item.name}</li>
-          <li><b>Path:</b> {item.path}</li>
-          <li><b>Art:</b> {String(item.art)}</li>
-          <li><b>Thumb:</b> {String(item.thumb)}</li>
+          {fields}
         </ul>
         {this.renderItems()}
       </div>
@@ -82,17 +118,14 @@ DisplayContainer.propTypes = {
 };
 
 export class DisplayDevice extends DisplayContainer {
-  render() {
+  getDisplayFields() {
     let { item } = this.props;
-    return (
-      <div>
-        <ul>
-          <li><b>Name:</b> {item.name}</li>
-          <li><b>Path:</b> {item.path}</li>
-          <li><b>ID:</b> {item.id}</li>
-        </ul>
-        {this.renderItems()}
-      </div>
+    let fields = super.getDisplayFields();
+
+    fields.push(
+      <li key="id"><b>ID:</b> {item.id}</li>,
     );
+
+    return fields;
   }
 }
