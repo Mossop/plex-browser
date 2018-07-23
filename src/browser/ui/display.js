@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 
 import PlexContainer from "plex-client/api/container";
 import PlexDevice from "plex-client/api/device";
-import { PlexEpisode } from "plex-client/api/metadata";
 
 class DisplayItem extends React.Component {
   getDisplayFields() {

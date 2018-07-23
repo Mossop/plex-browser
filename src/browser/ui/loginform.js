@@ -65,7 +65,6 @@ const mapDispatchToProps = (dispatch) => {
           dispatch(setDevices(devices));
         });
       }, (error) => {
-        console.error(error);
         dispatch(setUIValue("loginFailed", true));
       });
     },
