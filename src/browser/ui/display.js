@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 import PlexContainer from "plex-client/api/container";
 import PlexDevice from "plex-client/api/device";
+import { PlexEpisode } from "plex-client/api/metadata";
 
 class DisplayItem extends React.Component {
   getDisplayFields() {
@@ -85,7 +86,8 @@ class DisplayContainer extends DisplayItem {
             backgroundPosition: "center center",
           };
 
-          let width = parseInt(i.aspectRatio ? 191 * i.aspectRatio : 127);
+          let ratio = i.thumbAspectRatio;
+          let width = Math.floor(ratio * 191);
           if (i.thumb) {
             let thumb = i.device.transcodeImage(i.thumb, {
               width: width,
