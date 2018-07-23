@@ -24,21 +24,38 @@ export class DisplayContainer extends React.Component {
         flexDirection: "row",
         justifyContent: "start",
       }}>
-        {this.state.items.map(i => (
-          <li style={{
-            display: "block",
-            listStyleImage: "none",
-            textAlign: "center",
-            padding: "5px",
-            margin: "10px",
-            cursor: "pointer",
-            width: "100px",
-            height: "100px",
+        {this.state.items.map(i => {
+          let styles = {
+            height: "191px",
+            marginBottom: "5px",
             border: "1px solid black",
-          }} key={i.path} onClick={() => this.props.onSelectItem(i)}>
-            <p>{i.name}</p>
-          </li>
-        ))}
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center center",
+          };
+
+          if (i.thumb) {
+            let thumb = i.device.transcodeImage(i.thumb, {
+              width: 127,
+              height: 191,
+              minSize: 1,
+            });
+            styles.backgroundImage = `url(${thumb})`;
+          }
+
+          return (
+            <li style={{
+              display: "block",
+              listStyleImage: "none",
+              textAlign: "center",
+              margin: "10px",
+              cursor: "pointer",
+              width: "127px",
+            }} key={i.path} onClick={() => this.props.onSelectItem(i)}>
+              <div style={styles}></div>
+              <p>{i.name}</p>
+            </li>
+          );
+        })}
       </ol>
     );
   }
