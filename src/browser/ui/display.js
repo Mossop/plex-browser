@@ -82,9 +82,10 @@ export class DisplayContainer extends DisplayItem {
             backgroundPosition: "center center",
           };
 
+          let width = parseInt(i.aspectRatio ? 191 * i.aspectRatio : 127);
           if (i.thumb) {
             let thumb = i.device.transcodeImage(i.thumb, {
-              width: 127,
+              width: width,
               height: 191,
               minSize: 1,
             });
@@ -98,7 +99,7 @@ export class DisplayContainer extends DisplayItem {
               textAlign: "center",
               margin: "10px",
               cursor: "pointer",
-              width: "127px",
+              width: `${width}px`,
             }} key={i.path} onClick={() => this.props.onSelectItem(i)}>
               <div style={styles}></div>
               <p>{i.name}</p>
