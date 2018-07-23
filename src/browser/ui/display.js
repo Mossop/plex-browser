@@ -1,7 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-export class DisplayItem extends React.Component {
+import PlexContainer from "plex-client/api/container";
+import PlexDevice from "plex-client/api/device";
+
+class DisplayItem extends React.Component {
   getDisplayFields() {
     let { item } = this.props;
 
@@ -50,7 +53,7 @@ DisplayItem.propTypes = {
   item: PropTypes.object.isRequired,
 };
 
-export class DisplayContainer extends DisplayItem {
+class DisplayContainer extends DisplayItem {
   constructor(props) {
     super(props);
     this.state = { items: [] };
@@ -116,7 +119,7 @@ DisplayContainer.propTypes = {
   onSelectItem: PropTypes.func.isRequired,
 };
 
-export class DisplayDevice extends DisplayContainer {
+class DisplayDevice extends DisplayContainer {
   getDisplayFields() {
     let { item } = this.props;
     let fields = super.getDisplayFields();
@@ -127,4 +130,14 @@ export class DisplayDevice extends DisplayContainer {
 
     return fields;
   }
+}
+
+export function getDisplayForItem(item, onSelectItem) {
+  if (item instanceof PlexDevice) {
+    return <DisplayDevice key={item.path} item={item} onSelectItem={onSelectItem}/>;
+  } else if (item instanceof PlexContainer) {
+    return <DisplayContainer key={item.path} item={item} onSelectItem={onSelectItem}/>;
+  }
+
+  return <DisplayItem key={item.path} item={item}/>;
 }

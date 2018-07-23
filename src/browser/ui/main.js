@@ -2,12 +2,9 @@ import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import PlexContainer from "plex-client/api/container";
-import PlexDevice from "plex-client/api/device";
-
 import Breadcrumbs from "./breadcrumbs";
 import JSONDisplay from "./json";
-import { DisplayItem, DisplayContainer, DisplayDevice } from "./display";
+import { getDisplayForItem } from "./display";
 import { setUIValue, selectItem, selectCrumb } from "../state/actions";
 
 class ErrorBoundary extends React.Component {
@@ -48,12 +45,8 @@ const Main = ({ breadcrumbs, current, viewRaw, onSelectItem, onSelectCrumb, onVi
       <JSONDisplay key="data" data={current._data}/>
       <JSONDisplay key="sourceData" data={current._sourceData}/>
     </div>;
-  } else if (current instanceof PlexDevice) {
-    mainElement = <DisplayDevice key={current.path} item={current} onSelectItem={onSelectItem}/>;
-  } else if (current instanceof PlexContainer) {
-    mainElement = <DisplayContainer key={current.path} item={current} onSelectItem={onSelectItem}/>;
   } else {
-    mainElement = <DisplayItem key={current.path} item={current}/>
+    mainElement = getDisplayForItem(current, onSelectItem);
   }
 
   let toggleElement = <span style={{ cursor: "pointer" }} onClick={onViewRaw}>View Raw</span>;
