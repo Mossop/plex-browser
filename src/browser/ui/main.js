@@ -42,8 +42,7 @@ const Main = ({ breadcrumbs, current, viewRaw, onSelectItem, onSelectCrumb, onVi
   let mainElement;
   if (viewRaw) {
     mainElement = <div style={{ overflow: "auto" }}>
-      <JSONDisplay key="data" data={current._data}/>
-      <JSONDisplay key="sourceData" data={current._sourceData}/>
+      <JSONDisplay data={current._data}/>
     </div>;
   } else {
     mainElement = getDisplayForItem(current, onSelectItem);
